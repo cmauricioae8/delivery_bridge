@@ -74,6 +74,7 @@ class BatterySubscriber(BaseSubscriber):
 
     # override safe_callback
     def safe_callback(self, msg: Float64):
+        self.node.logger.info(f"Voltage received from '{self.topic_name}' topic")
         self.voltage = msg.data
         percentage_in = (
             (self.voltage - self.voltage_min)

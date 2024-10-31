@@ -60,7 +60,6 @@ class BaseSubscriber(BaseTopic):
         self.t0_last_send = 0
 
     def callback(self, msg):
-        print("BaseSubscriber CB ------- ")
         # Return if already on callback
         if self.already_on_callback:
             return

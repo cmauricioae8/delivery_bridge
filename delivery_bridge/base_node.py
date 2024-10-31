@@ -6,14 +6,13 @@ from rclpy.node import Node
 # from rclpy.qos import qos_profile_sensor_data
 
 # from delivery_bridge.webapp.socket_io import emitEvent
-# from delivery_bridge.webapp.settings import settings
+from delivery_bridge.webapp.settings import settings
 
 from delivery_bridge.topics.battery_subscriber import BatterySubscriber
-# from delivery_bridge.topics.pose_subscriber import PoseSubscriber
-# from delivery_bridge.topics.pose_publisher import PosePublisher
-# from delivery_bridge.topics.map_subscriber import MapSubscriber
+from delivery_bridge.topics.pose_subscriber import PoseSubscriber
+from delivery_bridge.topics.map_subscriber import MapSubscriber
+from delivery_bridge.topics.pose_publisher import PosePublisher
 from delivery_bridge.topics.cmd_vel_publisher import CmdVelPublisher
-# from delivery_bridge.topics.mode_status_publisher import ModeStatusPublisher
 
 
 class BaseNode(Node):
@@ -52,21 +51,40 @@ class BaseNode(Node):
 
         self.battery_subscriber = BatterySubscriber(
             self,
-            "/battery", #settings.BATTERY.TOPIC_NAME,
-            "std_msgs/Float64", # settings.BATTERY.TOPIC_TYPE,
-            10.0, # settings.BATTERY.PERCENTAGE_ZERO_SAFE,
-            95.0, # settings.BATTERY.PERCENTAGE_FULL_SAFE,
-            20.0, # settings.BATTERY.PERCENTAGE_LOW,
-            20.0, # settings.BATTERY.VOLTAGE_ZERO,
-            25.0, # settings.BATTERY.VOLTAGE_FULL,
-            1, # settings.BATTERY.MAX_EMIT_RATE,
+            settings.BATTERY.TOPIC_NAME,
+            settings.BATTERY.TOPIC_TYPE,
+            settings.BATTERY.PERCENTAGE_ZERO_SAFE,
+            settings.BATTERY.PERCENTAGE_FULL_SAFE,
+            settings.BATTERY.PERCENTAGE_LOW,
+            settings.BATTERY.VOLTAGE_ZERO,
+            settings.BATTERY.VOLTAGE_FULL,
+            settings.BATTERY.MAX_EMIT_RATE,
         )
         # ros2 topic pub --rate 8 /battery std_msgs/msg/Float64 data:\ 24.1
 
+        self.pose_subscriber = PoseSubscriber(
+            self,
+            settings.POSE.TOPIC_NAME,
+            settings.POSE.TOPIC_TYPE,
+            settings.POSE.MAX_EMIT_RATE,
+        )
+
+        self.map_subscriber = MapSubscriber(
+            self,
+            settings.MAP.TOPIC_NAME,
+            event_name="map",
+        )
+
         self.cmd_vel_publisher = CmdVelPublisher(
             self,
-            "/cmd_vel", # settings.CMD_VEL.TOPIC_NAME,
-            "geometry_msgs/Twist", # settings.CMD_VEL.TOPIC_TYPE,
+            settings.CMD_VEL.TOPIC_NAME,
+            settings.CMD_VEL.TOPIC_TYPE,
+        )
+
+        self.pose_publisher = PosePublisher(
+            self,
+            settings.INITIAL_POSE.TOPIC_NAME,
+            settings.INITIAL_POSE.TOPIC_TYPE,
         )
 
         self.logger.info("... BaseNode initialized")
@@ -86,7 +104,10 @@ class BaseNode(Node):
         # Try to subscribe and create the publishers for the topics
         self.logger.info("Initializing topics ...")
         self.battery_subscriber.try_subscribe()
+        self.pose_subscriber.try_subscribe()
+        self.map_subscriber.try_subscribe()
         self.cmd_vel_publisher.try_create_publisher()
+        self.pose_publisher.try_create_publisher()
         # self.navigation_client.try_create_client()
         self.logger.info("Topics initialized")
 

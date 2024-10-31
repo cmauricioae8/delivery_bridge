@@ -70,7 +70,7 @@ def quaternion_from_euler(roll: float, pitch: float, yaw: float) -> list[float]:
 
     return [qx, qy, qz, qw]
 
-"""
+
 class EnumWithDescription(Enum):
     def __new__(cls, *args, **kwds):
         obj = object.__new__(cls)
@@ -98,4 +98,3 @@ class EnumWithDescription(Enum):
             if item.description == description:
                 return item
         return None
-"""
