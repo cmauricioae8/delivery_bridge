@@ -1,0 +1,7 @@
+.vscode/
+delivery_bridge/__pycache__/
+delivery_bridge/topics/__pycache__/
+delivery_bridge/modules/__pycache__/
+delivery_bridge/webapp/__pycache__/
+delivery_bridge/webapp/apps/__pycache__/
+delivery_bridge/webapp/apps/*/__pycache__/
