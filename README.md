@@ -1,9 +1,9 @@
 
-# Delivery_bridge [ACTUALIZAR]
+# Delivery_bridge
 
-This is a ROS2 package. It is a bridge between the web interface and the ROS2 environment.
+:rocket This is a ROS2 package. It is a bridge between the web interface and the ROS 2 environment.
 
-This package have a node that start a HTTP server that provides a REST API, also start a Socket.IO server to provide a real-time communication between the web interface and the ROS2 environment.
+This package have a node that start a HTTP server that provides a REST API, also start a Socket.IO server to provide a real-time communication between the web interface and the ROS 2 environment.
 
 
 Tech Stack:
@@ -23,18 +23,18 @@ After you have ROS2 installed, you can clone this repository in your workspace a
 
 ```bash
 cd ~/colcon_ws/src
-git clone https://github.com/cmauricioae8/navbase_bdg.git
-cd navbase_bdg
+git clone https://github.com/cmauricioae8/delivery_bridge.git
+cd delivery_bridge
 pip install -r requirements.txt
 cd ~/colcon_ws/
-colcon build --packages-select navbase_bdg --symlink-install --allow-overriding navbase_bdg
+colcon build --packages-select delivery_bridge --symlink-install --allow-overriding delivery_bridge
 source install/setup.bash
 ```
 
 After of above configurations, test the project:
 
 ```bash
-ros2 run navbase_bdg server_node
+ros2 run delivery_bridge server_node
 ```
 
 Go to local url http://127.0.0.1:9009 and check that all is going well
