@@ -72,7 +72,6 @@ class BaseNode(Node):
         self.map_subscriber = MapSubscriber(
             self,
             settings.MAP.TOPIC_NAME,
-            event_name="map",
         )
 
         self.cmd_vel_publisher = CmdVelPublisher(

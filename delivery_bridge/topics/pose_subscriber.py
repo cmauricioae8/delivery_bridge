@@ -9,7 +9,7 @@ from rclpy.node import Node
 # Local apps
 from .base_topics import BaseSubscriber
 from ..utils import euler_from_quaternion
-# from delivery.webapp.socket_io import emitEvent
+# from delivery_bridge.webapp.socket_io import emitEvent
 
 
 class RobotPoseData:

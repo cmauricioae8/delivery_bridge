@@ -26,10 +26,7 @@ logger = logging.getLogger("ros2_log")
 class PosePublisher(BasePublisher):
     def __init__(self, node: Node, topic_name: str, message_type: str):
         super().__init__(node, topic_name, message_type)
-
-        # attributes for pose topic
-        # state for pose topic
-
+        
         # assign message class
         if self.message_type == "geometry_msgs/PoseWithCovarianceStamped":
             from geometry_msgs.msg import PoseWithCovarianceStamped

@@ -9,7 +9,7 @@ from nav_msgs.msg import OccupancyGrid
 # Local apps
 from .base_topics import BaseSubscriber
 # from ..utils import image_to_base64_str
-# from delivery.webapp.socket_io import emitEvent
+# from delivery_bridge.webapp.socket_io import emitEvent
 
 """
 class MapData:
@@ -63,11 +63,11 @@ class MapSubscriber(BaseSubscriber):
         topic_name: str,
         # colors: MapColors,
         max_rate: int = -1,
-        event_name: str = "map",
+        # event_name: str = "map",
     ):
         super().__init__(node, topic_name, "nav_msgs/OccupancyGrid", max_rate)
 
-        self.event_name = event_name
+        # self.event_name = event_name
 
         # state for map topic
         # self.map_data: MapData = MapData()

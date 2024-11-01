@@ -7,7 +7,7 @@ from delivery_bridge.utils import EnumWithDescription as Enum
 logger = logging.getLogger(__name__)
 
 # to get a string like this run: $ openssl rand -hex 32
-# SECRET_KEY = "6558c21a0068b9a84411f5037dcb76a422c0e73aad5a96bba92ded0d9bd5583f"
+SECRET_KEY = "6558c21a0068b9a84411f5037dcb76a422c0e73aad5a96bba92ded0d9bd5583f"
 APP_DATA_DIR = os.path.join(os.path.expanduser("~"), ".delivery_bridge")
 
 
@@ -187,7 +187,7 @@ class FunctionManager:
 
 class Settings:
     def __init__(self):
-        self.SECRET_KEY: str = "yxio$l!%v7#mgh9736%2bsw$)+owmdt(_2q5_pvhaltz*s+p)#"
+        self.SECRET_KEY: str = SECRET_KEY #"yxio$l!%v7#mgh9736%2bsw$)+owmdt(_2q5_pvhaltz*s+p)#"
         # ROS TOPICS TO LISTEN
         self.MAP: Map = Map()
         self.POSE_TO_SET: str = "same"  # "last_mode", "same", ""
