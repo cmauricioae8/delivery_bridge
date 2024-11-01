@@ -29,11 +29,11 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/", response_model=UserListResponseSerializer)
+@router.get("", response_model=UserListResponseSerializer)
 def user_list(
     request: Request,
     username: str = None,
-    # is_active: bool = None,
+    is_active: bool = None,
     is_admin: bool = None,
     page: int = 1,
     page_limit: int = 10,
@@ -48,7 +48,7 @@ def user_list(
         message="",
         data=get_users(
             username=username,
-            # is_active=is_active,
+            is_active=is_active,
             is_admin=is_admin,
             page=page,
             page_limit=page_limit,
@@ -79,7 +79,7 @@ def user_detail(request: Request, user_id: int):
     return response
 
 
-@router.post("/", response_model=Union[UserResponseSerializer, ErrorResponse])
+@router.post("", response_model=Union[UserResponseSerializer, ErrorResponse])
 def user_create(request: Request, form: UserCreateForm):
     """
     Nuevo usuario

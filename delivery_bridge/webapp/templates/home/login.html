@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ingresar a DeliveryBridge</title>
+    <title>DeliveryBridge login</title>
 
     <link rel="stylesheet" href="{{ url_for('static', path = '/plugins/bootstrap/bootstrap.min.css') }}" />
 
@@ -126,11 +126,11 @@
     <main class="form-signin w-100 m-auto">
       <form method="POST">
         <img class="mb-4" src="{{ url_for('static', path = '/img/logo.png') }}" alt=""/>
-        <h1 class="h3 mb-3 fw-normal title-img">DeliveryBridge</h1>
+        <h1 class="h3 mb-3 fw-normal title-img">Ingresar a Delivery Bridge</h1>
 
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" name="username" value="" placeholder="Usuario" required />
-          <label for="floatingInput">usuario</label>
+          <input type="text" class="form-control" id="floatingInput" name="username" value="admin" placeholder="Usuario" required />
+          <label for="floatingInput">Usuario</label>
         </div>
         <div class="form-floating">
           <input type="password" class="form-control" id="floatingPassword" name="password" value="" placeholder="Contraseña" required />

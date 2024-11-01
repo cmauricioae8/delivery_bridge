@@ -8,10 +8,6 @@ class WaypointCreateForm(BaseModel):
         unique=True,
         examples=["waypoint 1", "waypoint 2"],
     )
-    # type: int = Field(
-    #     description="Tipo de waypoint (fijo, auxiliar)",
-    #     examples=[1, 2],
-    # )
     is_mandatory: bool | None = Field(
         default=True,
         description="Waypoint obligatorio",
@@ -22,20 +18,6 @@ class WaypointCreateForm(BaseModel):
         description="Descripción del waypoint",
         examples=["waypoint1", "waypoint2"],
     )
-    # map: int = Field(
-    #     description="Mapa al que pertenece el waypoint",
-    #     examples=[1, 2],
-    # )
-    # icon: str | None = Field(
-    #     default="default",
-    #     description="Icono del waypoint",
-    #     examples=["icon1", "icon2"],
-    # )
-    # color: str | None = Field(
-    #     default="#000000",
-    #     description="Color del waypoint",
-    #     examples=["#000000", "#ffffff"],
-    # )
 
 
 class WaypointUpdateForm(BaseModel):
@@ -46,11 +28,6 @@ class WaypointUpdateForm(BaseModel):
         unique=True,
         examples=["waypoint 1", "waypoint 2"],
     )
-    # type: int | None = Field(
-    #     default=None,
-    #     description="Tipo de waypoint",
-    #     examples=[1, 2],
-    # )
     is_mandatory: bool | None = Field(
         default=True,
         description="Waypoint obligatorio",
@@ -61,11 +38,6 @@ class WaypointUpdateForm(BaseModel):
         description="Descripción del waypoint",
         examples=["waypoint1", "waypoint2"],
     )
-    # map: int | None = Field(
-    #     default=None,
-    #     description="Mapa al que pertenece el waypoint",
-    #     examples=[1, 2],
-    # )
     position_x: float | None = Field(
         default=None,
         description="Posición en el eje X (en metros)",
@@ -76,20 +48,11 @@ class WaypointUpdateForm(BaseModel):
         description="Posición en el eje Y (en metros)",
         examples=[0.1, -3.78],
     )
-    orientation_z: float | None = Field(
+    orientation: float | None = Field(
         gt=-3.1416,
         lt=3.1416,
         default=None,
         description="Orientación con respecto al eje X (en radianes)",
         examples=[0.1, -3.78],
     )
-    # icon: str | None = Field(
-    #     default=None,
-    #     description="Icono del waypoint",
-    #     examples=["icon1", "icon2"],
-    # )
-    # color: str | None = Field(
-    #     default=None,
-    #     description="Color del waypoint",
-    #     examples=["#000000", "#ffffff"],
-    # )
+

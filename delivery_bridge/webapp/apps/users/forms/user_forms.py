@@ -24,12 +24,12 @@ class UserCreateForm(BaseModel):
         max_length=100,
         examples=["admin"],
     )
-    # is_active: bool = Field(
-    #     title="Activo?",
-    #     description="Activo?",
-    #     default=True,
-    #     examples=[True],
-    # )
+    is_active: bool = Field(
+        title="Activo?",
+        description="Activo?",
+        default=True,
+        examples=[True],
+    )
     is_admin: bool = Field(
         title="Administrador?",
         description="Administrador?",
@@ -69,12 +69,12 @@ class UserUpdateForm(BaseModel):
         examples=["admin"],
         default=None,
     )
-    # is_active: bool | None = Field(
-    #     title="Activo?",
-    #     description="Activo?",
-    #     examples=[True],
-    #     default=None,
-    # )
+    is_active: bool | None = Field(
+        title="Activo?",
+        description="Activo?",
+        examples=[True],
+        default=None,
+    )
     is_admin: bool | None = Field(
         title="Administrador?",
         description="Administrador?",
@@ -87,8 +87,8 @@ class UserUpdateForm(BaseModel):
             user.username = self.username
         if self.password is not None:
             user.set_password(self.password)
-        # if self.is_active is not None:
-        #     user.is_active = self.is_active
+        if self.is_active is not None:
+            user.is_active = self.is_active
         if self.is_admin is not None:
             user.is_admin = self.is_admin
         user.updated_at = datetime.now()

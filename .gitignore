@@ -4,4 +4,5 @@ delivery_bridge/topics/__pycache__/
 delivery_bridge/modules/__pycache__/
 delivery_bridge/webapp/__pycache__/
 delivery_bridge/webapp/apps/__pycache__/
-delivery_bridge/webapp/apps/*/__pycache__/
+*.pyc                  #find . -name "*.pyc" -exec rm -f "{}" \;
+**/__pycache__/*.pyc   #find . -name "__pycache__" -exec rm -rf "{}" \;

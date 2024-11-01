@@ -26,6 +26,7 @@ def get_user(user_id: int) -> User:
 
 def get_users(
     username: str = None,
+    is_active: bool = None,
     is_admin: bool = None,
     page: int = 1,
     page_limit: int = 10,
@@ -38,6 +39,9 @@ def get_users(
     if username is not None:
         statement = statement.where(User.username >= username)
         statement_count = statement_count.where(User.username >= username)
+    if is_active is not None:
+        statement = statement.where(User.is_active == is_active)
+        statement_count = statement_count.where(User.is_active == is_active)
     if is_admin is not None:
         statement = statement.where(User.is_admin == is_admin)
         statement_count = statement_count.where(User.is_admin == is_admin)
@@ -75,7 +79,7 @@ def get_users(
             record_serialized = UserSerializer(
                 id=record.id,
                 username=record.username,
-                # is_active=record.is_active,
+                is_active=record.is_active,
                 is_admin=record.is_admin,
                 created_at=record.created_at,
                 updated_at=record.updated_at,

@@ -11,4 +11,4 @@ from delivery_bridge.webapp.apps.waypoints.routers import (
 
 router = APIRouter()
 
-router.include_router(waypoint_routers.router, prefix="/waypoint", tags=["waypoint"])
+router.include_router(waypoint_routers.router, prefix="/waypoint", tags=["Waypoints"])
