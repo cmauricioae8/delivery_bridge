@@ -11,7 +11,7 @@ from fastapi.openapi.docs import get_swagger_ui_html, get_redoc_html
 from fastapi.openapi.utils import get_openapi
 from sqlmodel import Session, select
 
-# import socketio
+import socketio
 
 # Import the models to create the tables, don't remove this import even if it's not used
 from .apps.waypoints.models import Waypoint  # noqa: F401
@@ -21,8 +21,8 @@ from .database import engine
 from .dependencies import NotAuthenticatedException, static_dir, media_dir
 from .urls import router
 from .apps.home.routers.login_router import login_manager
-# from .socket_io import sio
-# from .ws_no_prefix import NoPrefixNamespace
+from .socket_io import sio
+from .ws_no_prefix import NoPrefixNamespace
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
@@ -76,8 +76,8 @@ async def openapi(request: Request):
     )
 
 
-# sio.register_namespace(NoPrefixNamespace("/"))
-# sio_asgi_app = socketio.ASGIApp(socketio_server=sio, other_asgi_app=app)
+sio.register_namespace(NoPrefixNamespace("/"))
+sio_asgi_app = socketio.ASGIApp(socketio_server=sio, other_asgi_app=app)
 
 
 login_manager.useRequest(app)
@@ -99,8 +99,8 @@ app.mount("/media", StaticFiles(directory=media_dir), name="media")
 # include routers
 app.include_router(router)
 
-# app.add_route("/socket.io/", route=sio_asgi_app, methods=["GET", "POST"])
-# app.add_websocket_route("/socket.io/", sio_asgi_app)
+app.add_route("/socket.io/", route=sio_asgi_app, methods=["GET", "POST"])
+app.add_websocket_route("/socket.io/", sio_asgi_app)
 
 ########################################################################################
 

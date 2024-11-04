@@ -9,7 +9,7 @@ from std_msgs.msg import Float64
 # Serializers
 # Local apps
 from delivery_bridge.topics.base_topics import BaseSubscriber
-# from delivery_bridge.webapp.socket_io import emitEvent
+from delivery_bridge.webapp.socket_io import emitEvent
 
 logger = logging.getLogger("ros2_log")
 
@@ -92,7 +92,7 @@ class BatterySubscriber(BaseSubscriber):
             percentage = 100.0
 
         self.battery.update(self.voltage, int(percentage))
-        # emitEvent("battery", {"data": self.battery.to_dict()})
+        emitEvent("battery", {"data": self.battery.to_dict()})
         self.battery_available = True
 
         if percentage < self.percentage_low:

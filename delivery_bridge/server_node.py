@@ -4,6 +4,7 @@ from threading import Thread
 
 from delivery_bridge.base_node import base_node
 from delivery_bridge.webapp.main import app as webapp
+from delivery_bridge.webapp.main import sio
 # from delivery_bridge_bridge.modules.function_manager import function_manager
 
 from delivery_bridge.webapp.database import createDatabase
@@ -39,6 +40,14 @@ def main(args=None):
 
 
     base_node.init_topics()
+
+    # register sio events
+    @sio.event
+    async def cmd_vel(sid, data):
+        linear_x = float(data["linear_x"])
+        angular_z = float(data["angular_z"])
+        # logger.info("robot_move \tx:{:2.2f}, \tz:{:2.2f}".format(linear_x,angular_z))
+        base_node.cmd_vel_publisher.publish(linear_x, angular_z)
 
     rclpy.spin(base_node)
 

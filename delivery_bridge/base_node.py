@@ -5,7 +5,7 @@ import rclpy
 from rclpy.node import Node
 # from rclpy.qos import qos_profile_sensor_data
 
-# from delivery_bridge.webapp.socket_io import emitEvent
+from delivery_bridge.webapp.socket_io import emitEvent
 from delivery_bridge.webapp.settings import settings
 
 from delivery_bridge.topics.battery_subscriber import BatterySubscriber
@@ -24,16 +24,16 @@ class BaseNode(Node):
         self.logger = self.get_logger()
         self.logger.info("Starting node BaseNode ...")
 
-        # emitEvent(
-        #     "on_status_change",
-        #     {
-        #         "data": {
-        #             "general": {
-        #                 "on_ros": True,
-        #             }
-        #         }
-        #     },
-        # )
+        emitEvent(
+            "on_status_change",
+            {
+                "data": {
+                    "general": {
+                        "on_ros": True,
+                    }
+                }
+            },
+        )
 
         ################################################################################
 
@@ -88,16 +88,16 @@ class BaseNode(Node):
 
         self.logger.info("... BaseNode initialized")
 
-        # emitEvent(
-        #     "on_status_change",
-        #     {
-        #         "data": {
-        #             "general": {
-        #                 "ready": True,
-        #             }
-        #         }
-        #     },
-        # )
+        emitEvent(
+            "on_status_change",
+            {
+                "data": {
+                    "general": {
+                        "ready": True,
+                    }
+                }
+            },
+        )
 
     def init_topics(self):
         # Try to subscribe and create the publishers for the topics
