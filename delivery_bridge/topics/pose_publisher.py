@@ -12,7 +12,7 @@ from geometry_msgs.msg import (
 )
 
 # Models
-# from delivery_bridge.webapp.apps.waypoints.models import Waypoint
+from delivery_bridge.webapp.apps.waypoints.models import Waypoint
 
 # Serializers
 # Local apps
@@ -64,7 +64,7 @@ class PosePublisher(BasePublisher):
             logger.error("Can't publish to pose topic: {}".format(e))
             return False, "Can't publish to pose topic: {}".format(e)
 
-    # def set_pose_to_waypoint(self, waypoint: Waypoint) -> tuple[bool, str]:
-    #     return self.set_pose(
-    #         waypoint.position_x, waypoint.position_y, waypoint.orientation_z
-    #     )
+    def set_pose_to_waypoint(self, waypoint: Waypoint) -> tuple[bool, str]:
+        return self.set_pose(
+            waypoint.position_x, waypoint.position_y, waypoint.orientation
+        )
