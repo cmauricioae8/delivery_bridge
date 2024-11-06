@@ -1,6 +1,6 @@
 # python imports
-from os import path, makedirs
-import yaml
+# from os import path, makedirs
+# import yaml
 import logging
 from datetime import datetime
 
@@ -8,7 +8,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 
 # local imports
-from delivery_bridge.webapp.settings import APP_DATA_DIR
+# from delivery_bridge.webapp.settings import APP_DATA_DIR
 from delivery_bridge.utils import EnumWithDescription
 
 logger = logging.getLogger(__name__)
@@ -110,11 +110,11 @@ class DataWithPagination(BaseModel):
     records: list = Field(examples=[[]])
 
 
-class EndpointSerializer(BaseSerializer):
-    url: str = ""
-    method: str = "POST"
-    payload: dict = {}
-    headers: dict = {}
+# class EndpointSerializer(BaseSerializer):
+#     url: str = ""
+#     method: str = "POST"
+#     payload: dict = {}
+#     headers: dict = {}
 
 """
 class SettingSerializer(BaseSerializer):

@@ -16,7 +16,7 @@ class RobotPoseData:
     def __init__(self):
         self.position_x: float = 0.0
         self.position_y: float = 0.0
-        self.orientation_z: float = 0.0
+        self.orientation: float = 0.0
         self.covariance: list = []
         self.timestamp: float = time.time()
 
@@ -24,12 +24,12 @@ class RobotPoseData:
         self,
         position_x: float,
         position_y: float,
-        orientation_z: float,
+        orientation: float,
         covariance: list,
     ):
         self.position_x = position_x
         self.position_y = position_y
-        self.orientation_z = orientation_z
+        self.orientation = orientation
         self.covariance = covariance
         self.timestamp = time.time()
 
@@ -37,7 +37,7 @@ class RobotPoseData:
         return {
             "position_x": round(self.position_x, 2),
             "position_y": round(self.position_y, 2),
-            "orientation_z": round(self.orientation_z, 2),
+            "orientation": round(self.orientation, 2),
             "timestamp": self.timestamp,
         }
 
@@ -88,7 +88,7 @@ class PoseSubscriber(BaseSubscriber):
         if self.message_type == "geometry_msgs/Pose":
             position_x = msg.position.x
             position_y = msg.position.y
-            orientation_z = euler_from_quaternion(
+            orientation = euler_from_quaternion(
                 msg.orientation.x,
                 msg.orientation.y,
                 msg.orientation.z,
@@ -96,6 +96,6 @@ class PoseSubscriber(BaseSubscriber):
             )[2]
             covariance = []
 
-        self.pose_data.update(position_x, position_y, orientation_z, covariance)
+        self.pose_data.update(position_x, position_y, orientation, covariance)
         self.pose_available = True
         emitEvent("robot_pose", self.pose_data.to_dict())

@@ -69,7 +69,7 @@ async def openapi(request: Request):
         title="Delivery Bridge API",
         description=(
             "API para el Delivery Bridge, usado para la administración de la"
-            " navegación autónoma en un entorno WEB, interactuando con ROS2."
+            " navegación autónoma en un entorno WEB, interactuando con ROS 2."
         ),
         version="1.0.0",
         routes=app.routes,

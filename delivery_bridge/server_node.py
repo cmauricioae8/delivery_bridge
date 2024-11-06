@@ -5,7 +5,7 @@ from threading import Thread
 from delivery_bridge.base_node import base_node
 from delivery_bridge.webapp.main import app as webapp
 from delivery_bridge.webapp.main import sio
-# from delivery_bridge_bridge.modules.function_manager import function_manager
+from delivery_bridge.modules.function_manager import function_manager
 
 from delivery_bridge.webapp.database import createDatabase
 from delivery_bridge.webapp.apps.users.cruds.user_cruds import user_crud
@@ -40,6 +40,7 @@ def main(args=None):
 
 
     base_node.init_topics()
+    function_manager.start()
 
     # register sio events
     @sio.event

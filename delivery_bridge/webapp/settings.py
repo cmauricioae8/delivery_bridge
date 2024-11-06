@@ -100,6 +100,7 @@ class FunctionMode(Enum):   # Functionality Modes
     DELIVERY = "delivery", "Entrega"
     CRUISER = "cruiser", "Crucero"
 
+
 class Process:
     def __init__(
         self,

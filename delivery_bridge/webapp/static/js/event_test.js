@@ -2,12 +2,12 @@ var toast_element = document.getElementById('toast_element');
 var toast_title = document.getElementById('toast_title');
 var toast_body = document.getElementById('toast_body');
 
-var notification_toast_element = document.getElementById('notification_toast_element');
-var notification_toast_title = document.getElementById('notification_toast_title');
-var notification_toast_body = document.getElementById('notification_toast_body');
+// var notification_toast_element = document.getElementById('notification_toast_element');
+// var notification_toast_title = document.getElementById('notification_toast_title');
+// var notification_toast_body = document.getElementById('notification_toast_body');
 
 function send_message(message){
-  console.log("Sending Message to server")
+  console.log("Sending Message to server");
   socketio.emit('messages', data=message);
 }
 // funcion para atrapar mensajes del servidor
@@ -35,8 +35,7 @@ socketio.on("on_status_change", (msg) =>{
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-var vel_x = 0.1;
-//var start_mode = document.getElementById("start_mode");
+var start_functionality = document.getElementById("start_functionality");
 
 // ELEMENTS FOR CMD_VEL
 var button_cmd_forward = document.getElementById("cmd_forward");
@@ -46,18 +45,14 @@ var button_cmd_right = document.getElementById("cmd_right");
 var button_cmd_stop = document.getElementById("cmd_stop");
 
 var position_element = document.getElementById('position');
-// var on_mode_change_element = document.getElementById('on_mode_change');
 
 // ELEMENTS FOR SET POSE
-var button_pose_set = document.getElementById("pose_set");
-var pose_position_x = document.getElementById("pose_position_x");
-var pose_position_y = document.getElementById("pose_position_y");
-var pose_orientation_z = document.getElementById("pose_orientation_z");
+// var button_pose_set = document.getElementById("pose_set");
+// var pose_position_x = document.getElementById("pose_position_x");
+// var pose_position_y = document.getElementById("pose_position_y");
+// var pose_orientation = document.getElementById("pose_orientation");
 
 // ELEMENTS FOR BATTERY
-var button_battery_get = document.getElementById("battery_get");
-var button_battery_stop = document.getElementById("battery_stop");
-var battery_as_event_checkbox = document.getElementById("battery_as_event_checkbox");
 var battery_voltage = document.getElementById("battery_voltage");
 var battery_percentage = document.getElementById("battery_percentage");
 
@@ -66,6 +61,33 @@ var on_status_change_label = document.getElementById("on_status_change_label");
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+start_functionality.addEventListener("click", function(){
+  console.log("Set functionality mode");
+  data = {
+    mode: document.getElementById('function_selection').value,
+  }
+  // if (document.getElementById("map_select").value){
+  //   data.map_id = parseInt(document.getElementById("map_select").value);
+  // }
+  $.ajax(
+      {
+        url: document.location.origin+"/ros/functionality_mode/",
+        type: "POST",
+        //traditional:true,
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data),
+        success: function(data){
+            console.log("Set functionality success");
+        },
+        error: function(error){
+          console.log(error);
+          alert(error);
+        }
+  });
+});
 
 
 // ACTIONS FOR CMD_VEL
@@ -122,7 +144,3 @@ socketio.on('robot_pose', function(data) {
   //console.log(data);
   position_element.innerHTML = `(${data.position_x.toFixed(2)}, ${data.position_y.toFixed(2)}, ${data.orientation_z.toFixed(2)})`;
 });
-// socketio.on('on_mode_change', function(data) {
-//   //console.log(data);
-//   on_mode_change_element.innerHTML = data.mode;
-// });

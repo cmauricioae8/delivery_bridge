@@ -4,6 +4,26 @@
 
 <div class="row">
     <div class="col-12">
+    <!-- ------------ modes ------------ -->
+        <div class="card m-2" >
+            <div class="card-body">
+                <p style="font-size:20px">Seleccione una funcionalidad</p>
+                <div class="input-group mb-3">
+                    <select class="form-select" id="function_selection">
+                        <option value="static" selected>Estático</option>
+                        <option value="delivery">Mesero</option>
+                        <option value="cruiser">Crusero</option>
+                    </select>
+                    <button class="btn btn-warning" type="button" id="start_functionality">Iniciar Funcionalidad</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------------------------------- -->
+</div>
+
+<div class="row">
+    <div class="col-12">
         <!-- ------------ EVENTO: cmd_vel ------------ -->
         <div class="card m-2" >
             <div class="card-body text-center">
@@ -24,9 +44,9 @@
                 <h5 class="card-title">Event: battery</h5>
             </div>
             <div class="card-body">
-                <p class="card-text">Get current battery status of the robot</p>
-                <p class="card-text">voltage: <span id="battery_voltage"></span> </p>
-                <p class="card-text">Percentage: <span id="battery_percentage"></span> </p>
+                <p class="card-text">Status de la batería</p>
+                <p class="card-text">Voltaje: <span id="battery_voltage"></span> </p>
+                <p class="card-text">Porcentaje: <span id="battery_percentage"></span> </p>
             </div>
         </div>
         <!-- --------------------------------------------------- -->
@@ -39,8 +59,22 @@
                 <h5 class="card-title">Event: robot_pose</h5>
             </div>                
             <div class="card-body">
-                <p class="card-text">Current robot pose with respect to map frame</p>
+                <p class="card-text">Posición del robot con respecto al marco map</p>
                 <p>Position: <span id="position"></span></p>
+            </div>
+        </div>
+        <!-- --------------------------------------------------- -->
+    </div>
+
+    <div class="col-4">
+        <!-- ------------ EVENTO: on_status_change ------------ -->
+        <div class="card m-2">
+            <div class="card-header">
+                <h5 class="card-title">Event: on_status_change</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Funcionalidad</p>
+                <p class="card-text">data: <pre id="on_status_change_label"></pre> </p>
             </div>
         </div>
         <!-- --------------------------------------------------- -->
